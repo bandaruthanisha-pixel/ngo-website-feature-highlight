@@ -1,0 +1,455 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.pg{font-family:var(--font-sans);background:#e8edf2;padding:16px;border-radius:12px}
+.frame{background:#f5f6f8;border:0.5px solid #c8d0da;border-radius:10px;overflow:hidden}
+
+.tb{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#f0f2f5;border-bottom:0.5px solid #d0d6de}
+.tb-l{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%}
+.tb-title{font-size:10px;color:#7a8594;margin-left:8px;letter-spacing:0.02em}
+.tb-r{display:flex;gap:8px}
+.tb-tag{font-size:9px;padding:2px 8px;border-radius:3px;background:#dde3ea;color:#5a6472}
+
+.hero{background:#1a3a5c;padding:36px 36px 32px;text-align:center}
+.hero-tag{display:inline-block;font-size:9px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;border:0.5px solid rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px}
+.hero-h{font-size:21px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:10px}
+.hero-p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:480px;margin:0 auto 22px}
+.hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-bottom:0}
+.hc{font-size:10px;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:0.5px solid rgba(255,255,255,0.1)}
+
+.content{padding:0}
+
+.feat-block{padding:24px 28px;border-bottom:0.5px solid #dde3ea;background:#fff}
+.feat-block:last-child{border-bottom:none}
+.feat-block.alt{background:#f8f9fb}
+
+.fb-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.fb-left{display:flex;align-items:flex-start;gap:10px}
+.fb-num{width:24px;height:24px;border-radius:50%;background:#1a3a5c;color:#fff;font-size:10px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.fb-title{font-size:14px;font-weight:500;color:#1a2b3c;margin-bottom:3px}
+.fb-desc{font-size:11px;color:#6b7685;line-height:1.55;max-width:420px}
+.fb-note{font-size:9px;font-weight:500;padding:4px 10px;background:#EBF2FA;color:#1a3a5c;border-radius:4px;white-space:nowrap;margin-top:2px;display:inline-block}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+
+.card{background:#fff;border:0.5px solid #dde3ea;border-radius:8px;padding:14px}
+.card.shaded{background:#f8f9fb}
+
+.lbl{font-size:9px;color:#8a95a0;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.06em}
+.val{font-size:18px;font-weight:500;color:#1a3a5c}
+.val-sm{font-size:13px;font-weight:500;color:#1a3a5c}
+
+.prog-wrap{margin:6px 0 10px}
+.prog-top{display:flex;justify-content:space-between;font-size:9px;color:#8a95a0;margin-bottom:4px}
+.prog{height:4px;background:#dde3ea;border-radius:2px}
+.prog-fill{height:4px;background:#1a3a5c;border-radius:2px}
+
+.amt-row{display:flex;gap:5px;margin-bottom:10px}
+.amt{flex:1;text-align:center;padding:6px 4px;border:0.5px solid #c8d0da;border-radius:5px;font-size:10px;color:#6b7685;cursor:pointer}
+.amt.on{border:1.5px solid #1a3a5c;color:#1a3a5c;font-weight:500;background:#EBF2FA}
+
+.check-row{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.chk{width:13px;height:13px;border-radius:3px;background:#EBF2FA;border:0.5px solid #1a3a5c;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.check-row span{font-size:10px;color:#6b7685}
+
+.btn-main{width:100%;padding:8px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+.btn-out{width:100%;padding:8px;background:transparent;color:#1a3a5c;border:0.5px solid #1a3a5c;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;margin-top:7px}
+
+.pay-row{display:flex;gap:5px;margin-top:8px}
+.pay{font-size:9px;padding:3px 8px;border:0.5px solid #c8d0da;border-radius:4px;color:#6b7685}
+
+.vf-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.vf{background:#fff;border:0.5px solid #c8d0da;border-radius:5px;padding:7px 9px;font-size:10px;color:#9aa3ad}
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.tag{font-size:9px;padding:3px 9px;border-radius:20px;border:0.5px solid #c8d0da;color:#6b7685;cursor:pointer}
+.tag.on{background:#EBF2FA;color:#1a3a5c;border-color:#1a3a5c;font-weight:500}
+
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.bar-row:last-child{margin-bottom:0}
+.bar-name{font-size:10px;color:#4a5568;min-width:70px}
+.bar-track{flex:1;height:3px;background:#dde3ea;border-radius:2px}
+.bar-fill{height:3px;background:#1a3a5c;border-radius:2px}
+
+.story{background:#fff;border:0.5px solid #dde3ea;border-radius:8px;padding:12px}
+.story-badge{font-size:8px;font-weight:500;padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:7px}
+.sb-b{background:#E6F1FB;color:#0C447C}
+.sb-g{background:#E1F5EE;color:#085041}
+.sb-a{background:#FAEEDA;color:#633806}
+.story-t{font-size:11px;font-weight:500;color:#1a2b3c;margin-bottom:4px}
+.story-p{font-size:10px;color:#6b7685;line-height:1.5;margin-bottom:8px}
+.story-lnk{font-size:10px;color:#1a3a5c;font-weight:500;cursor:pointer}
+
+.tcard{background:#fff;border:0.5px solid #dde3ea;border-radius:8px;padding:13px}
+.stars{font-size:10px;color:#B8860B;margin-bottom:7px}
+.quote{font-size:10px;color:#6b7685;line-height:1.55;font-style:italic;margin-bottom:10px}
+.t-foot{display:flex;align-items:center;gap:7px}
+.t-av{width:24px;height:24px;border-radius:50%;font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center}
+.av1{background:#E6F1FB;color:#0C447C}
+.av2{background:#E1F5EE;color:#085041}
+.av3{background:#FAEEDA;color:#633806}
+.t-name{font-size:10px;font-weight:500;color:#1a2b3c}
+.t-role{font-size:9px;color:#8a95a0}
+
+.evt{display:flex;align-items:center;gap:10px;background:#fff;border:0.5px solid #dde3ea;border-radius:7px;padding:10px 12px;margin-bottom:7px}
+.evt:last-child{margin-bottom:0}
+.evt-dt{text-align:center;min-width:30px}
+.evt-day{font-size:15px;font-weight:500;color:#1a3a5c;line-height:1}
+.evt-mon{font-size:8px;color:#8a95a0;text-transform:uppercase}
+.evt-line{width:0.5px;height:30px;background:#dde3ea}
+.evt-info{flex:1}
+.evt-t{font-size:11px;font-weight:500;color:#1a2b3c;margin-bottom:1px}
+.evt-m{font-size:9px;color:#8a95a0}
+.evt-pill{font-size:8px;padding:3px 8px;border-radius:10px;background:#E6F1FB;color:#0C447C;font-weight:500}
+.evt-btn{font-size:9px;font-weight:500;padding:5px 11px;border:0.5px solid #1a3a5c;color:#1a3a5c;border-radius:5px;cursor:pointer;background:transparent;white-space:nowrap}
+
+.ci{display:flex;align-items:flex-start;gap:9px;background:#fff;border:0.5px solid #dde3ea;border-radius:7px;padding:10px 12px;margin-bottom:7px}
+.ci:last-child{margin-bottom:0}
+.ci-ico{width:28px;height:28px;border-radius:6px;background:#EBF2FA;color:#1a3a5c;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ci-l{font-size:9px;color:#8a95a0}
+.ci-v{font-size:11px;font-weight:500;color:#1a2b3c}
+.soc-row{display:flex;gap:6px;padding:10px 12px;background:#fff;border:0.5px solid #dde3ea;border-radius:7px}
+.soc{width:28px;height:28px;border-radius:6px;border:0.5px solid #dde3ea;display:flex;align-items:center;justify-content:center;font-size:13px;color:#6b7685}
+.cf{background:#fff;border:0.5px solid #dde3ea;border-radius:8px;padding:14px}
+.cf-h{font-size:12px;font-weight:500;color:#1a2b3c;margin-bottom:10px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.cff{background:#f8f9fb;border:0.5px solid #c8d0da;border-radius:5px;padding:7px 9px;font-size:10px;color:#9aa3ad;width:100%}
+.cf-area{height:48px;resize:none;margin-bottom:8px}
+
+.footer{background:#1a3a5c;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.ft-l{font-size:11px;font-weight:500;color:#fff}
+.ft-sub{font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px}
+.ft-links{display:flex;gap:14px}
+.ft-lnk{font-size:9px;color:rgba(255,255,255,0.45);cursor:pointer}
+</style>
+
+<h2 class="sr-only">NGO website feature highlight — Figma-style presentation of six key sections for an NGO website.</h2>
+
+<div class="pg">
+<div class="frame">
+
+  <div class="tb">
+    <div class="tb-l">
+      <div class="dot" style="background:#e05252"></div>
+      <div class="dot" style="background:#e0a832"></div>
+      <div class="dot" style="background:#52b052"></div>
+      <span class="tb-title">NGO Website Feature Highlight.fig — Task 5</span>
+    </div>
+    <div class="tb-r">
+      <span class="tb-tag">Frame 1 / 1</span>
+      <span class="tb-tag">100%</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-tag">Figma Task 5 &nbsp;·&nbsp; Internship Design</div>
+    <div class="hero-h">Essential Features for an NGO Website</div>
+    <div class="hero-p">A proposed NGO website structure highlighting key features that improve donations, volunteering, transparency, engagement, and support.</div>
+    <div class="hero-chips">
+      <span class="hc"><i class="ti ti-heart-handshake" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Donations</span>
+      <span class="hc"><i class="ti ti-user-plus" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Volunteering</span>
+      <span class="hc"><i class="ti ti-chart-bar" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Impact</span>
+      <span class="hc"><i class="ti ti-quote" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Testimonials</span>
+      <span class="hc"><i class="ti ti-calendar-event" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Events</span>
+      <span class="hc"><i class="ti ti-mail" style="font-size:10px;margin-right:4px" aria-hidden="true"></i>Contact</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="feat-block">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">1</div>
+          <div>
+            <div class="fb-title">Donation section</div>
+            <div class="fb-desc">Allows visitors to make secure one-time or recurring donations with campaign progress tracking and preset amounts.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Primary revenue source — directly funds all programmes and operations</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card shaded">
+          <div style="font-size:11px;font-weight:500;color:#1a2b3c;margin-bottom:2px">Clean water campaign</div>
+          <div style="font-size:10px;color:#8a95a0;margin-bottom:10px">Help us bring safe water to 5,000 families by Aug 2026.</div>
+          <div class="amt-row">
+            <div class="amt">₹250</div>
+            <div class="amt">₹500</div>
+            <div class="amt on">₹1,000</div>
+            <div class="amt">Custom</div>
+          </div>
+          <div class="prog-wrap">
+            <div class="prog-top"><span>₹8,40,000 raised</span><span>Goal: ₹12,00,000</span></div>
+            <div class="prog"><div class="prog-fill" style="width:70%"></div></div>
+          </div>
+          <div class="check-row">
+            <div class="chk"><i class="ti ti-check" style="font-size:8px;color:#1a3a5c" aria-hidden="true"></i></div>
+            <span>Make this a monthly donation</span>
+          </div>
+          <button class="btn-main"><i class="ti ti-lock" style="font-size:11px" aria-hidden="true"></i>Donate ₹1,000 securely</button>
+          <div class="pay-row">
+            <div class="pay">UPI</div><div class="pay">Card</div><div class="pay">Net banking</div><div class="pay">Wallet</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div><div class="lbl">Donors</div><div class="val">1,248</div></div>
+            <div><div class="lbl">Days left</div><div class="val" style="color:#993C1D">14</div></div>
+          </div>
+          <div class="card">
+            <div class="lbl">Campaign completion</div>
+            <div style="font-size:15px;font-weight:500;color:#1a3a5c;margin-bottom:5px">70% reached</div>
+            <div class="prog"><div class="prog-fill" style="width:70%"></div></div>
+          </div>
+          <div class="card">
+            <div class="lbl" style="margin-bottom:6px">Accepted payment methods</div>
+            <div class="pay-row" style="margin-top:0">
+              <div class="pay">UPI</div><div class="pay">Visa</div><div class="pay">Mastercard</div><div class="pay">PayPal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-block alt">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">2</div>
+          <div>
+            <div class="fb-title">Volunteer registration</div>
+            <div class="fb-desc">A structured sign-up form that collects skills and availability, then matches volunteers to active projects automatically.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Turns website visitors into active contributors — expands reach without added cost</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="vf-grid">
+            <div class="vf">Full name</div>
+            <div class="vf">Email address</div>
+            <div class="vf">Phone number</div>
+            <div class="vf">City / district</div>
+          </div>
+          <div style="font-size:9px;font-weight:500;color:#4a5568;margin-bottom:5px">Select your skills</div>
+          <div class="tag-row">
+            <div class="tag on">Teaching</div>
+            <div class="tag on">Healthcare</div>
+            <div class="tag">IT / Tech</div>
+            <div class="tag">Legal aid</div>
+            <div class="tag">Agriculture</div>
+            <div class="tag">Logistics</div>
+          </div>
+          <div style="font-size:9px;font-weight:500;color:#4a5568;margin-bottom:5px">Availability</div>
+          <div class="tag-row" style="margin-bottom:10px">
+            <div class="tag on">Weekends</div>
+            <div class="tag">Weekdays</div>
+            <div class="tag">Remote only</div>
+            <div class="tag">Full-time</div>
+          </div>
+          <button class="btn-main">Submit registration</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div><div class="lbl">Active volunteers</div><div class="val">8,200</div></div>
+            <div><div class="lbl">Match rate</div><div class="val">94%</div></div>
+          </div>
+          <div class="card">
+            <div class="lbl" style="margin-bottom:8px">Top roles needed</div>
+            <div class="bar-row"><span class="bar-name">Teaching</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+            <div class="bar-row"><span class="bar-name">Healthcare</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div>
+            <div class="bar-row"><span class="bar-name">IT / Tech</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></div>
+            <div class="bar-row"><span class="bar-name">Logistics</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-block">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">3</div>
+          <div>
+            <div class="fb-title">Impact showcase</div>
+            <div class="fb-desc">Transparent statistics and real success stories that demonstrate accountability and justify continued donor support.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Builds donor trust — transparency is the #1 factor in repeat donations</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid4">
+        <div class="card shaded" style="text-align:center"><div class="val">12,400+</div><div class="lbl" style="margin-top:4px">Beneficiaries reached</div></div>
+        <div class="card shaded" style="text-align:center"><div class="val">340</div><div class="lbl" style="margin-top:4px">Projects completed</div></div>
+        <div class="card shaded" style="text-align:center"><div class="val">89%</div><div class="lbl" style="margin-top:4px">Funds to programmes</div></div>
+        <div class="card shaded" style="text-align:center"><div class="val">28</div><div class="lbl" style="margin-top:4px">Countries covered</div></div>
+      </div>
+      <div class="grid3">
+        <div class="story">
+          <span class="story-badge sb-b">Education</span>
+          <div class="story-t">600 children enrolled in school</div>
+          <div class="story-p">Rural literacy drive in Andhra Pradesh helped 600 out-of-school children enrol and attend regularly.</div>
+          <div class="story-lnk">Read story <i class="ti ti-arrow-right" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i></div>
+        </div>
+        <div class="story">
+          <span class="story-badge sb-g">Clean water</span>
+          <div class="story-t">Safe water for 3,200 families</div>
+          <div class="story-p">Purification units across 12 villages eliminated a 4 km daily walk for safe drinking water.</div>
+          <div class="story-lnk">Read story <i class="ti ti-arrow-right" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i></div>
+        </div>
+        <div class="story">
+          <span class="story-badge sb-a">Healthcare</span>
+          <div class="story-t">Free medical camps for 5,000</div>
+          <div class="story-p">Mobile health clinics provided free diagnosis, medicine, and follow-up care to underserved communities.</div>
+          <div class="story-lnk">Read story <i class="ti ti-arrow-right" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-block alt">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">4</div>
+          <div>
+            <div class="fb-title">Testimonials</div>
+            <div class="fb-desc">Authentic feedback from donors, volunteers, and beneficiaries — the most persuasive content an NGO website can display.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Social proof reduces hesitation — new donors trust peer voices over organisation statements</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid3">
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <div class="quote">"Setting up monthly giving took two minutes. The impact report each month makes my contribution feel real."</div>
+          <div class="t-foot">
+            <div class="t-av av1">AR</div>
+            <div><div class="t-name">Arjun Reddy</div><div class="t-role">Monthly donor</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <div class="quote">"The volunteer portal matched me to a literacy project within a week. Teaching kids in my area has been life-changing."</div>
+          <div class="t-foot">
+            <div class="t-av av2">PS</div>
+            <div><div class="t-name">Priya Sharma</div><div class="t-role">Volunteer, Chennai</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <div class="quote">"Because of the clean water project, my children no longer miss school. They are healthier every single day."</div>
+          <div class="t-foot">
+            <div class="t-av av3">AM</div>
+            <div><div class="t-name">Amara Mensah</div><div class="t-role">Beneficiary, Ghana</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-block">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">5</div>
+          <div>
+            <div class="fb-title">Campaigns & events</div>
+            <div class="fb-desc">Upcoming fundraising drives and community events with dates, locations, and one-click registration links.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Creates urgency and regular touchpoints — converts passive followers into active participants</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="evt">
+          <div class="evt-dt"><div class="evt-day">14</div><div class="evt-mon">Jul</div></div>
+          <div class="evt-line"></div>
+          <div class="evt-info">
+            <div class="evt-t">Clean water fundraising marathon — Hyderabad</div>
+            <div class="evt-m"><i class="ti ti-map-pin" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i> HICC, Hyderabad &nbsp;·&nbsp; 6:00 AM – 2:00 PM &nbsp;·&nbsp; In-person</div>
+          </div>
+          <span class="evt-pill">Fundraising</span>
+          <button class="evt-btn">Register</button>
+        </div>
+        <div class="evt">
+          <div class="evt-dt"><div class="evt-day">22</div><div class="evt-mon">Jul</div></div>
+          <div class="evt-line"></div>
+          <div class="evt-info">
+            <div class="evt-t">Rural education volunteer drive — Vijayawada</div>
+            <div class="evt-m"><i class="ti ti-map-pin" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i> Vijayawada &nbsp;·&nbsp; Online + In-person</div>
+          </div>
+          <span class="evt-pill">Volunteering</span>
+          <button class="evt-btn">Register</button>
+        </div>
+        <div class="evt">
+          <div class="evt-dt"><div class="evt-day">05</div><div class="evt-mon">Aug</div></div>
+          <div class="evt-line"></div>
+          <div class="evt-info">
+            <div class="evt-t">Annual gala — 10 years of NGO impact</div>
+            <div class="evt-m"><i class="ti ti-map-pin" style="font-size:9px;vertical-align:-1px" aria-hidden="true"></i> The Leela, Chennai &nbsp;·&nbsp; 7:00 PM – 11:00 PM</div>
+          </div>
+          <span class="evt-pill">Gala</span>
+          <button class="evt-btn">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-block alt" style="border-bottom:none">
+      <div class="fb-head">
+        <div class="fb-left">
+          <div class="fb-num">6</div>
+          <div>
+            <div class="fb-title">Contact & support</div>
+            <div class="fb-desc">Multiple contact channels — form, email, phone, and social links — so every visitor can reach the right person easily.</div>
+            <span class="fb-note"><i class="ti ti-info-circle" style="font-size:9px;margin-right:3px" aria-hidden="true"></i>Signals openness and legitimacy — prevents interested visitors from leaving without connecting</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <div class="ci">
+            <div class="ci-ico"><i class="ti ti-mail" aria-hidden="true"></i></div>
+            <div><div class="ci-l">Email</div><div class="ci-v">hello@ngo.org</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-ico"><i class="ti ti-phone" aria-hidden="true"></i></div>
+            <div><div class="ci-l">Phone</div><div class="ci-v">+91 98765 43210</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-ico"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+            <div><div class="ci-l">Office</div><div class="ci-v">Vijayawada, Andhra Pradesh, India</div></div>
+          </div>
+          <div class="soc-row">
+            <div class="soc"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
+            <div class="soc"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+            <div class="soc"><i class="ti ti-brand-twitter" aria-hidden="true"></i></div>
+            <div class="soc"><i class="ti ti-brand-facebook" aria-hidden="true"></i></div>
+            <div class="soc"><i class="ti ti-brand-youtube" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div class="cf">
+          <div class="cf-h">Send us a message</div>
+          <div class="cf-row">
+            <div class="cff">Your name</div>
+            <div class="cff">Email address</div>
+          </div>
+          <div class="cff" style="margin-bottom:6px">Subject</div>
+          <textarea class="cff cf-area">Your message…</textarea>
+          <button class="btn-main"><i class="ti ti-send" style="font-size:11px" aria-hidden="true"></i>Send message</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="ft-l">NGO Website — Feature Highlight</div>
+      <div class="ft-sub">Task 5 &nbsp;·&nbsp; Internship Design &nbsp;·&nbsp; June 2026</div>
+    </div>
+    <div class="ft-links">
+      <span class="ft-lnk">6 features identified</span>
+      <span class="ft-lnk">·</span>
+      <span class="ft-lnk">Dark blue professional theme</span>
+      <span class="ft-lnk">·</span>
+      <span class="ft-lnk">Figma-ready layout</span>
+    </div>
+  </div>
+
+</div>
+</div>
